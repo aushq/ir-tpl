@@ -497,6 +497,9 @@ void register_scene_types() {
 	GDREGISTER_VIRTUAL_CLASS(VideoStreamPlayback);
 	GDREGISTER_VIRTUAL_CLASS(VideoStream);
 
+	GDREGISTER_CLASS(RichTextLabel);
+	GDREGISTER_CLASS(RichTextEffect);
+
 #ifndef ADVANCED_GUI_DISABLED
 	GDREGISTER_CLASS(FileDialog);
 
@@ -515,8 +518,6 @@ void register_scene_types() {
 	GDREGISTER_CLASS(SpinBox);
 	GDREGISTER_CLASS(ColorPicker);
 	GDREGISTER_CLASS(ColorPickerButton);
-	GDREGISTER_CLASS(RichTextLabel);
-	GDREGISTER_CLASS(RichTextEffect);
 	GDREGISTER_CLASS(CharFXTransform);
 
 	GDREGISTER_CLASS(AcceptDialog);
