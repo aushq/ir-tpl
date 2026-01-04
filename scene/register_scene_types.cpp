@@ -497,8 +497,23 @@ void register_scene_types() {
 	GDREGISTER_VIRTUAL_CLASS(VideoStreamPlayback);
 	GDREGISTER_VIRTUAL_CLASS(VideoStream);
 
+	GDREGISTER_ABSTRACT_CLASS(TreeItem);
+	GDREGISTER_CLASS(MenuBar);
+	GDREGISTER_CLASS(MenuButton);
+	GDREGISTER_CLASS(OptionButton);
+	GDREGISTER_CLASS(SpinBox);
+
 	GDREGISTER_CLASS(RichTextLabel);
 	GDREGISTER_CLASS(RichTextEffect);
+
+	GDREGISTER_CLASS(SplitContainer);
+	GDREGISTER_CLASS(HSplitContainer);
+	GDREGISTER_CLASS(VSplitContainer);
+
+	GDREGISTER_CLASS(SubViewportContainer);
+
+	GDREGISTER_CLASS(FoldableGroup);
+	GDREGISTER_CLASS(FoldableContainer);
 
 #ifndef ADVANCED_GUI_DISABLED
 	GDREGISTER_CLASS(FileDialog);
@@ -511,11 +526,6 @@ void register_scene_types() {
 	GDREGISTER_CLASS(SyntaxHighlighter);
 	GDREGISTER_CLASS(CodeHighlighter);
 
-	GDREGISTER_ABSTRACT_CLASS(TreeItem);
-	GDREGISTER_CLASS(MenuBar);
-	GDREGISTER_CLASS(MenuButton);
-	GDREGISTER_CLASS(OptionButton);
-	GDREGISTER_CLASS(SpinBox);
 	GDREGISTER_CLASS(ColorPicker);
 	GDREGISTER_CLASS(ColorPickerButton);
 	GDREGISTER_CLASS(CharFXTransform);
@@ -523,18 +533,10 @@ void register_scene_types() {
 	GDREGISTER_CLASS(AcceptDialog);
 	GDREGISTER_CLASS(ConfirmationDialog);
 
-	GDREGISTER_CLASS(SubViewportContainer);
-	GDREGISTER_CLASS(SplitContainer);
-	GDREGISTER_CLASS(HSplitContainer);
-	GDREGISTER_CLASS(VSplitContainer);
-
 	GDREGISTER_CLASS(GraphElement);
 	GDREGISTER_CLASS(GraphNode);
 	GDREGISTER_CLASS(GraphFrame);
 	GDREGISTER_CLASS(GraphEdit);
-
-	GDREGISTER_CLASS(FoldableGroup);
-	GDREGISTER_CLASS(FoldableContainer);
 
 	OS::get_singleton()->yield(); // may take time to init
 

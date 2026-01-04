@@ -30,6 +30,7 @@
 
 #include "file_access_encrypted.h"
 
+#include "core/templates/vector.h"
 #include "core/variant/variant.h"
 
 CryptoCore::RandomGenerator *FileAccessEncrypted::_fae_static_rng = nullptr;
@@ -54,6 +55,11 @@ Error FileAccessEncrypted::open_and_parse(Ref<FileAccess> p_base, const Vector<u
 		writing = true;
 		file = p_base;
 		key = p_key;
+
+		#ifdef KEY_MAGIC
+		key = Vector<uint8_t>({KEY_MAGIC(p_key)});
+		#endif
+
 		if (p_iv.is_empty()) {
 			iv.resize(16);
 			if (unlikely(!_fae_static_rng)) {
@@ -74,6 +80,10 @@ Error FileAccessEncrypted::open_and_parse(Ref<FileAccess> p_base, const Vector<u
 	} else if (p_mode == MODE_READ) {
 		writing = false;
 		key = p_key;
+
+		#ifdef KEY_MAGIC
+		key = Vector<uint8_t>({KEY_MAGIC(p_key)});
+		#endif
 
 		if (use_magic) {
 			uint32_t magic = p_base->get_32();
