@@ -26,6 +26,26 @@ for tool in ${_REQUIRED_TOOLS[@]}; do
 done
 
 
+function apply_patch() {
+  # Apply any necessary patches here
+  echo "Patching source code..."
+  patch -V none -u core/io/file_access_encrypted.cpp -i release/key_magic.patch
+}
+
+function revert_patch() {
+  # Revert any patches applied
+  echo "Reverting patches..."
+  patch -R -s -u core/io/file_access_encrypted.cpp -i release/key_magic.patch
+}
+
+function build_editor() {
+  echo "Building Godot..."
+  scons \
+    target=editor \
+	  production=yes \
+    platform=ios
+}
+
 function build_ios() {
   export SCRIPT_AES256_ENCRYPTION_KEY=$(cat $_ENCRYPTION_KEY_FILE | xargs)
 
@@ -72,8 +92,12 @@ function build_ios() {
   cd $_CURRENT_DIR
 }
 
+apply_patch
+trap revert_patch EXIT
 if [ "$1" == "ios" ]; then
   build_ios
+elif [ "$1" == "editor" ]; then
+  build_editor
 else
   echo "Unknown platform: $1"
   exit 1
